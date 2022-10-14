@@ -26,8 +26,14 @@ def cadastrar(tipo, custo, nome, ingredientes):
     :return: Retorna o dicionario com o novo item 
     :rtype: dict{str:dict{str:float}}
     
+    >>> ingredientes = {'massa': {}, 'molhos': {'tomate': 4.0, 'branco': 3.0},'queijo': {'mozzarela': 6.0}, 'cobertura': {'calabresa': 8.0}}
+    >>> cadastrar('massa', 9.9, 'fina', ingredientes)
+    {'massa': {'fina': 9.9}, 'molhos': {'tomate': 4.0, 'branco': 3.0}, 'queijo': {'mozzarela': 6.0}, 'cobertura': {'calabresa': 8.0}}
+    
+    
     """
-    pass
+    ingredientes[tipo][nome] = float(custo)
+    return ingredientes
 
 def remover(tipo, custo, nome, ingredientes):
     """Remove um ingrediente da lista de ingredientes
@@ -44,8 +50,13 @@ def remover(tipo, custo, nome, ingredientes):
     :return: Retorna o dicionario sem o item inserido
     :rtype: dict{str:dict{str:float}}
     
+    >>> ingredientes = {'massa': {'fina': 9.9}, 'molhos': {'tomate': 4.0, 'branco': 3.0},'queijo': {'mozzarela': 6.0}, 'cobertura': {'calabresa': 8.0}}
+    >>> remover('massa', 0, 'fina', ingredientes)
+    {'massa': {}, 'molhos': {'tomate': 4.0, 'branco': 3.0}, 'queijo': {'mozzarela': 6.0}, 'cobertura': {'calabresa': 8.0}}
+    
     """
-    pass
+    ingredientes[tipo].pop(nome)
+    return ingredientes
 
 
 def listar(tipo ='todos', ingredientes):
