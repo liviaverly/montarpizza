@@ -75,3 +75,8 @@ def listar(tipo ='todos', ingredientes):
         return ingredientes
     else:
         return ingredientes[tipo]
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+    
