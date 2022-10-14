@@ -60,4 +60,7 @@ def listar(tipo ='todos', ingredientes):
     :rtype: dict{str:dict{str:float}}
     
     """
-    pass
+    if tipo == 'todos':
+        return ingredientes
+    else:
+        return ingredientes[tipo]
