@@ -8,8 +8,32 @@ def pizza(ingredientes, lista_escolha):
     
     :return: valor
     :rtype: float
+    
+    >>> ingredientes = {"massa":{"fina":3.4, "grossa":5.6}, "queijo":{"cheddar":5, "prato":3}, "cobertura":{"frango":4, "presunto":10}}
+    >>> pizza(ingredientes, ["frango", "fina", "prato"])
+    31.0
+
+    >>> pizza(ingredientes, ["pepperoni", "prato", "grossa"])
+    Os ingredientes não estão disponíveis!
+    0
     """
-    pass
+    if not isinstance(ingredientes, dict):
+        print("Dicionário de ingredientes em formato inválido!")
+    if not isinstance(lista_escolha, list):
+        print("Dicionário de escolhas em formato inválido!")
+
+    ingredientes_valores = map(lambda tipo: list(tipo.items()), ingredientes.values())
+    ingredientes_valores = [ingrediente for lista_tipo in ingredientes_valores for ingrediente in lista_tipo]
+    ingredientes_nomes = [ingredientes[0] for ingredientes in ingredientes_valores]
+    valor_pizza = 0
+
+    if set(lista_escolha).issubset(ingredientes_nomes):
+        for ingrediente in ingredientes_valores:
+            if ingrediente[0] in ingredientes_nomes:
+                valor_pizza += ingrediente[1]
+    else:
+        print("Os ingredientes não estão disponíveis!")
+    return valor_pizza
 
 def cadastrar(tipo, custo, nome, ingredientes):
     """Cadatra um novo ingrediente de determinado tipo na lista de ingredientes
